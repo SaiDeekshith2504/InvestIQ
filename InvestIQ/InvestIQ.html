@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InvestIQ - Financial Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <a href="#" class="logo">Invest<span>IQ</span></a>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="showTab('dashboard', this); return false;">Portfolio</a></li>
+    <li><a href="#" onclick="showTab('stocks', this); return false;">Markets</a></li>
+    <li><a href="#" onclick="showTab('calculators', this); return false;">Calculators</a></li>
+    <li><a href="#" onclick="showTab('insights', this); return false;">Insights</a></li>
+  </ul>
+  <button class="btn-open">Open Account</button>
+</div>
+
+<!-- NEWS TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">AAPL</span> $192.40 <span class="up-text">▲ +1.2%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">MSFT</span> $415.30 <span class="up-text">▲ +0.8%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">GOOGL</span> $175.80 <span class="down-text">▼ -0.4%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">NVDA</span> $875.20 <span class="up-text">▲ +3.4%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">AMZN</span> $186.90 <span class="up-text">▲ +1.6%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">BTC</span> $43,280 <span class="up-text">▲ +2.4%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">ETH</span> $2,610 <span class="up-text">▲ +1.8%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">SENSEX</span> 75,418 <span class="up-text">▲ +1.4%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">NIFTY</span> 22,833 <span class="up-text">▲ +1.1%</span></span>
+    <span>·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">AAPL</span> $192.40 <span class="up-text">▲ +1.2%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">MSFT</span> $415.30 <span class="up-text">▲ +0.8%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">NVDA</span> $875.20 <span class="up-text">▲ +3.4%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">BTC</span> $43,280 <span class="up-text">▲ +2.4%</span></span>
+    <span>·</span>
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-sym">SENSEX</span> 75,418 <span class="up-text">▲ +1.4%</span></span>
+  </div>
+</div>
+
+
+<!-- ===========================
+     DASHBOARD TAB
+=========================== -->
+<div id="tab-dashboard" class="tab-page active">
+
+  <!-- Hero -->
+  <div class="hero-section">
+    <div>
+      <div class="badge"><span class="blink"></span>Portfolio Live</div>
+      <h1>Track Your Wealth<br><em>Smarter</em> Every Day</h1>
+      <p>See all your investments — stocks, mutual funds, and crypto — in one place. Get real-time updates and personalized insights.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary" onclick="showTab('calculators', null); return false;">Try Calculators →</a>
+        <a href="#" class="btn-outline"  onclick="showTab('stocks', null); return false;">Live Markets</a>
+      </div>
+    </div>
+
+    <!-- Portfolio overview card -->
+    <div class="portfolio-card">
+      <div class="card-top">
+        <span class="card-label">Total Portfolio Value</span>
+        <span class="live-tag"><span class="blink"></span>Live</span>
+      </div>
+      <div class="total-value">₹4,28,750</div>
+      <div class="total-change">▲ ₹78,750 (+22.5%) overall return</div>
+
+      <!-- Donut chart (SVG) -->
+      <div class="donut-area">
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="18"/>
+          <circle cx="55" cy="55" r="40" fill="none" stroke="#3ddba8" stroke-width="18"
+            stroke-dasharray="138 113" stroke-dashoffset="63"/>
+          <circle cx="55" cy="55" r="40" fill="none" stroke="#4d9fff" stroke-width="18"
+            stroke-dasharray="70 181" stroke-dashoffset="-75"/>
+          <circle cx="55" cy="55" r="40" fill="none" stroke="#fbbf24" stroke-width="18"
+            stroke-dasharray="43 208" stroke-dashoffset="-145"/>
+          <text x="55" y="52" text-anchor="middle" fill="#e0e6f0" font-size="11" font-family="monospace">₹4.28L</text>
+          <text x="55" y="64" text-anchor="middle" fill="#8899aa" font-size="8">Portfolio</text>
+        </svg>
+        <div class="legend-list">
+          <div class="legend-item"><span class="legend-dot" style="background:#3ddba8;"></span><span class="legend-name">Equity</span><span style="color:#3ddba8;font-family:monospace;">55%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#4d9fff;"></span><span class="legend-name">Debt</span><span style="color:#4d9fff;font-family:monospace;">28%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#fbbf24;"></span><span class="legend-name">Crypto</span><span style="color:#fbbf24;font-family:monospace;">17%</span></div>
+        </div>
+      </div>
+
+      <!-- Simple sparkline -->
+      <svg class="spark-svg" viewBox="0 0 400 50" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3ddba8" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#3ddba8" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,40 L40,35 L80,33 L120,37 L160,28 L200,22 L240,18 L280,14 L320,10 L360,7 L400,4 L400,50 L0,50 Z" fill="url(#sparkGrad)"/>
+        <path d="M0,40 L40,35 L80,33 L120,37 L160,28 L200,22 L240,18 L280,14 L320,10 L360,7 L400,4" fill="none" stroke="#3ddba8" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Stats cards -->
+  <div class="stats-section">
+    <div class="stat-box">
+      <div class="stat-icon">💰</div>
+      <div class="stat-label">Invested</div>
+      <div class="stat-value" style="color:#3ddba8;">₹3,50,000</div>
+      <div class="stat-note">Total amount invested</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-icon">📈</div>
+      <div class="stat-label">Total Gain</div>
+      <div class="stat-value" style="color:#3ddba8;">+₹78,750</div>
+      <div class="stat-note">+22.5% overall return</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-icon">📉</div>
+      <div class="stat-label">Today's Change</div>
+      <div class="stat-value" style="color:#f43f5e;">-₹2,340</div>
+      <div class="stat-note">-0.55% from yesterday</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-label">Best Performer</div>
+      <div class="stat-value" style="color:#fbbf24;">NVDA</div>
+      <div class="stat-note">+148.3% this year</div>
+    </div>
+  </div>
+
+  <!-- Holdings Table -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">My Holdings <span class="count">12 Assets</span></div>
+      <a href="#" class="section-link">View All →</a>
+    </div>
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>Category</th>
+            <th>Qty</th>
+            <th>Avg Price</th>
+            <th>Current</th>
+            <th>Invested</th>
+            <th>Current Val</th>
+            <th>P&amp;L</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="asset-info">
+                <div class="asset-icon" style="background:rgba(61,219,168,0.1);">🍎</div>
+                <div><div class="asset-name">Apple Inc.</div><div class="asset-sym">AAPL</div></div>
+              </div>
+            </td>
+            <td><span class="tag tag-eq">Equity</span></td>
+            <td class="mono">15</td>
+            <td class="mono">$145.20</td>
+            <td class="mono">$192.40</td>
+            <td class="mono">₹1,81,500</td>
+            <td class="mono">₹2,40,500</td>
+            <td><span class="green">+₹59,000 (+32.5%)</span></td>
+            <td><svg width="70" height="24" viewBox="0 0 70 24"><polyline points="0,18 15,13 30,15 45,9 60,6 70,4" stroke="#3ddba8" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="asset-info">
+                <div class="asset-icon" style="background:rgba(77,159,255,0.1);">🏦</div>
+                <div><div class="asset-name">HDFC Bank</div><div class="asset-sym">HDFCBANK</div></div>
+              </div>
+            </td>
+            <td><span class="tag tag-eq">Equity</span></td>
+            <td class="mono">50</td>
+            <td class="mono">₹1,520</td>
+            <td class="mono">₹1,680</td>
+            <td class="mono">₹76,000</td>
+            <td class="mono">₹84,000</td>
+            <td><span class="green">+₹8,000 (+10.5%)</span></td>
+            <td><svg width="70" height="24" viewBox="0 0 70 24"><polyline points="0,16 15,18 30,13 45,15 60,11 70,8" stroke="#3ddba8" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="asset-info">
+                <div class="asset-icon" style="background:rgba(251,191,36,0.1);">₿</div>
+                <div><div class="asset-name">Bitcoin</div><div class="asset-sym">BTC-USD</div></div>
+              </div>
+            </td>
+            <td><span class="tag tag-cr">Crypto</span></td>
+            <td class="mono">0.15</td>
+            <td class="mono">$38,400</td>
+            <td class="mono">$43,280</td>
+            <td class="mono">₹47,952</td>
+            <td class="mono">₹54,060</td>
+            <td><span class="green">+₹6,108 (+12.7%)</span></td>
+            <td><svg width="70" height="24" viewBox="0 0 70 24"><polyline points="0,20 15,16 30,18 45,11 60,9 70,6" stroke="#fbbf24" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="asset-info">
+                <div class="asset-icon" style="background:rgba(129,140,248,0.1);">📊</div>
+                <div><div class="asset-name">Mirae Asset</div><div class="asset-sym">MIRAE-LG</div></div>
+              </div>
+            </td>
+            <td><span class="tag tag-mf">Mutual Fund</span></td>
+            <td class="mono">850</td>
+            <td class="mono">₹82.40</td>
+            <td class="mono">₹94.10</td>
+            <td class="mono">₹70,040</td>
+            <td class="mono">₹79,985</td>
+            <td><span class="green">+₹9,945 (+14.2%)</span></td>
+            <td><svg width="70" height="24" viewBox="0 0 70 24"><polyline points="0,17 15,15 30,13 45,14 60,10 70,8" stroke="#818cf8" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="asset-info">
+                <div class="asset-icon" style="background:rgba(244,63,94,0.1);">⚡</div>
+                <div><div class="asset-name">Tesla</div><div class="asset-sym">TSLA</div></div>
+              </div>
+            </td>
+            <td><span class="tag tag-eq">Equity</span></td>
+            <td class="mono">8</td>
+            <td class="mono">$280.00</td>
+            <td class="mono">$248.90</td>
+            <td class="mono">₹18,592</td>
+            <td class="mono">₹16,530</td>
+            <td><span class="red">-₹2,062 (-11.1%)</span></td>
+            <td><svg width="70" height="24" viewBox="0 0 70 24"><polyline points="0,8 15,10 30,9 45,15 60,18 70,21" stroke="#f43f5e" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="asset-info">
+                <div class="asset-icon" style="background:rgba(77,159,255,0.1);">🔵</div>
+                <div><div class="asset-name">SBI Debt Fund</div><div class="asset-sym">SBI-DEBT</div></div>
+              </div>
+            </td>
+            <td><span class="tag tag-de">Debt</span></td>
+            <td class="mono">1200</td>
+            <td class="mono">₹28.50</td>
+            <td class="mono">₹30.80</td>
+            <td class="mono">₹34,200</td>
+            <td class="mono">₹36,960</td>
+            <td><span class="green">+₹2,760 (+8.1%)</span></td>
+            <td><svg width="70" height="24" viewBox="0 0 70 24"><polyline points="0,16 15,15 30,14 45,13 60,12 70,11" stroke="#4d9fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Watchlist -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Watchlist <span class="count">8 Stocks</span></div>
+      <a href="#" class="section-link">+ Add Stock</a>
+    </div>
+    <div class="watch-grid">
+      <div class="watch-card">
+        <div class="watch-top"><span class="watch-sym">NVDA</span><span class="watch-badge">US</span></div>
+        <div class="watch-price">$875.20</div>
+        <div class="up-text" style="font-size:13px;font-weight:600;">▲ +3.4% today</div>
+        <div class="watch-bar-bg"><div class="watch-bar-fill" style="width:84%;background:#3ddba8;"></div></div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-top"><span class="watch-sym">INFY</span><span class="watch-badge">NSE</span></div>
+        <div class="watch-price">₹1,840</div>
+        <div class="up-text" style="font-size:13px;font-weight:600;">▲ +2.1% today</div>
+        <div class="watch-bar-bg"><div class="watch-bar-fill" style="width:62%;background:#3ddba8;"></div></div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-top"><span class="watch-sym">META</span><span class="watch-badge">US</span></div>
+        <div class="watch-price">$508.40</div>
+        <div class="up-text" style="font-size:13px;font-weight:600;">▲ +2.1% today</div>
+        <div class="watch-bar-bg"><div class="watch-bar-fill" style="width:72%;background:#3ddba8;"></div></div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-top"><span class="watch-sym">TCS</span><span class="watch-badge">NSE</span></div>
+        <div class="watch-price">₹3,980</div>
+        <div class="down-text" style="font-size:13px;font-weight:600;">▼ -0.3% today</div>
+        <div class="watch-bar-bg"><div class="watch-bar-fill" style="width:48%;background:#f43f5e;"></div></div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-top"><span class="watch-sym">AMZN</span><span class="watch-badge">US</span></div>
+        <div class="watch-price">$186.90</div>
+        <div class="up-text" style="font-size:13px;font-weight:600;">▲ +1.6% today</div>
+        <div class="watch-bar-bg"><div class="watch-bar-fill" style="width:66%;background:#3ddba8;"></div></div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-top"><span class="watch-sym">ETH</span><span class="watch-badge">Crypto</span></div>
+        <div class="watch-price">$2,610</div>
+        <div class="up-text" style="font-size:13px;font-weight:600;">▲ +1.8% today</div>
+        <div class="watch-bar-bg"><div class="watch-bar-fill" style="width:55%;background:#fbbf24;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mutual Funds -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Mutual Funds <span class="count">Top Picks</span></div>
+      <a href="#" class="section-link">Explore All →</a>
+    </div>
+    <div class="mf-grid">
+      <div class="mf-card">
+        <div class="mf-card-top">
+          <div class="mf-fund-name">Mirae Asset Large Cap Fund - Direct Growth</div>
+          <div class="mf-category cat-large">Large Cap</div>
+        </div>
+        <div class="mf-stats">
+          <div><div class="mf-stat-label">NAV</div><div class="mf-stat-val">₹94.10</div></div>
+          <div><div class="mf-stat-label">1Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+28.4%</div></div>
+          <div><div class="mf-stat-label">3Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+18.2%</div></div>
+        </div>
+        <div class="mf-bar-bg"><div class="mf-bar-fill" style="width:78%;"></div></div>
+        <div class="risk-row">Risk: <div class="risk-dots"><div class="rdot on"></div><div class="rdot on"></div><div class="rdot on"></div><div class="rdot"></div><div class="rdot"></div></div> Moderate</div>
+      </div>
+      <div class="mf-card">
+        <div class="mf-card-top">
+          <div class="mf-fund-name">Parag Parikh Flexi Cap Fund - Direct Growth</div>
+          <div class="mf-category cat-mid">Flexi Cap</div>
+        </div>
+        <div class="mf-stats">
+          <div><div class="mf-stat-label">NAV</div><div class="mf-stat-val">₹68.42</div></div>
+          <div><div class="mf-stat-label">1Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+32.1%</div></div>
+          <div><div class="mf-stat-label">3Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+22.8%</div></div>
+        </div>
+        <div class="mf-bar-bg"><div class="mf-bar-fill" style="width:88%;"></div></div>
+        <div class="risk-row">Risk: <div class="risk-dots"><div class="rdot on"></div><div class="rdot on"></div><div class="rdot on"></div><div class="rdot on"></div><div class="rdot"></div></div> Mod-High</div>
+      </div>
+      <div class="mf-card">
+        <div class="mf-card-top">
+          <div class="mf-fund-name">SBI Short Term Debt Fund - Regular</div>
+          <div class="mf-category cat-debt">Debt</div>
+        </div>
+        <div class="mf-stats">
+          <div><div class="mf-stat-label">NAV</div><div class="mf-stat-val">₹30.80</div></div>
+          <div><div class="mf-stat-label">1Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+7.6%</div></div>
+          <div><div class="mf-stat-label">3Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+6.4%</div></div>
+        </div>
+        <div class="mf-bar-bg"><div class="mf-bar-fill" style="width:38%;background:linear-gradient(to right,#4d9fff,#818cf8);"></div></div>
+        <div class="risk-row">Risk: <div class="risk-dots"><div class="rdot on"></div><div class="rdot on"></div><div class="rdot"></div><div class="rdot"></div><div class="rdot"></div></div> Low</div>
+      </div>
+      <div class="mf-card">
+        <div class="mf-card-top">
+          <div class="mf-fund-name">Quant Small Cap Fund - Direct Growth</div>
+          <div class="mf-category cat-small">Small Cap</div>
+        </div>
+        <div class="mf-stats">
+          <div><div class="mf-stat-label">NAV</div><div class="mf-stat-val">₹218.60</div></div>
+          <div><div class="mf-stat-label">1Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+64.2%</div></div>
+          <div><div class="mf-stat-label">3Y Return</div><div class="mf-stat-val" style="color:#3ddba8;">+38.5%</div></div>
+        </div>
+        <div class="mf-bar-bg"><div class="mf-bar-fill" style="width:95%;background:linear-gradient(to right,#fbbf24,#fb923c);"></div></div>
+        <div class="risk-row">Risk: <div class="risk-dots"><div class="rdot on"></div><div class="rdot on"></div><div class="rdot on"></div><div class="rdot on"></div><div class="rdot on"></div></div> Very High</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crypto -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Crypto Market <span class="count">Top 6</span></div>
+      <a href="#" class="section-link">View All →</a>
+    </div>
+    <div class="crypto-grid">
+      <div class="crypto-card">
+        <div class="crypto-top"><div class="crypto-icon" style="background:rgba(251,191,36,0.12);">₿</div><div><div class="crypto-name">Bitcoin</div><div class="crypto-sym">BTC</div></div></div>
+        <div class="crypto-price">$43,280</div>
+        <div class="up-text" style="font-size:12px;font-weight:600;margin-bottom:6px;">▲ +2.4% today</div>
+        <div class="crypto-mcap">Mkt Cap: $847B</div>
+      </div>
+      <div class="crypto-card">
+        <div class="crypto-top"><div class="crypto-icon" style="background:rgba(77,159,255,0.12);">Ξ</div><div><div class="crypto-name">Ethereum</div><div class="crypto-sym">ETH</div></div></div>
+        <div class="crypto-price">$2,610</div>
+        <div class="up-text" style="font-size:12px;font-weight:600;margin-bottom:6px;">▲ +1.8% today</div>
+        <div class="crypto-mcap">Mkt Cap: $314B</div>
+      </div>
+      <div class="crypto-card">
+        <div class="crypto-top"><div class="crypto-icon" style="background:rgba(129,140,248,0.12);">◎</div><div><div class="crypto-name">Solana</div><div class="crypto-sym">SOL</div></div></div>
+        <div class="crypto-price">$98.40</div>
+        <div class="down-text" style="font-size:12px;font-weight:600;margin-bottom:6px;">▼ -0.6% today</div>
+        <div class="crypto-mcap">Mkt Cap: $42B</div>
+      </div>
+      <div class="crypto-card">
+        <div class="crypto-top"><div class="crypto-icon" style="background:rgba(139,92,246,0.12);">⬡</div><div><div class="crypto-name">Polygon</div><div class="crypto-sym">MATIC</div></div></div>
+        <div class="crypto-price">$0.82</div>
+        <div class="up-text" style="font-size:12px;font-weight:600;margin-bottom:6px;">▲ +4.2% today</div>
+        <div class="crypto-mcap">Mkt Cap: $8.2B</div>
+      </div>
+      <div class="crypto-card">
+        <div class="crypto-top"><div class="crypto-icon" style="background:rgba(61,219,168,0.12);">◈</div><div><div class="crypto-name">Cardano</div><div class="crypto-sym">ADA</div></div></div>
+        <div class="crypto-price">$0.49</div>
+        <div class="up-text" style="font-size:12px;font-weight:600;margin-bottom:6px;">▲ +1.1% today</div>
+        <div class="crypto-mcap">Mkt Cap: $17B</div>
+      </div>
+      <div class="crypto-card">
+        <div class="crypto-top"><div class="crypto-icon" style="background:rgba(251,146,60,0.12);">◉</div><div><div class="crypto-name">Chainlink</div><div class="crypto-sym">LINK</div></div></div>
+        <div class="crypto-price">$14.20</div>
+        <div class="down-text" style="font-size:12px;font-weight:600;margin-bottom:6px;">▼ -1.3% today</div>
+        <div class="crypto-mcap">Mkt Cap: $8.4B</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- end dashboard tab -->
+
+
+<!-- ===========================
+     STOCKS TAB
+=========================== -->
+<div id="tab-stocks" class="tab-page">
+  <div class="stocks-page">
+    <div class="page-badge">
+      <div class="badge"><span class="blink"></span>Market Open</div>
+      <h2>Stock Market <em>Dashboard</em></h2>
+      <p>Track AAPL, MSFT, GOOGL, NVDA, AMZN and top Indian stocks live.</p>
+    </div>
+
+    <!-- Ticker cards row -->
+    <div class="ticker-cards">
+      <div class="ticker-card" onclick="pickStock('AAPL', '$192.40', 'Apple Inc.', this)">
+        <div class="tc-sym">AAPL</div>
+        <div class="tc-name">Apple Inc.</div>
+        <div class="tc-price">$192.40</div>
+        <div class="tc-chg up-text">▲ +1.2% today</div>
+        <div class="tc-bar-bg"><div class="tc-bar-fill" style="width:68%;background:#3ddba8;"></div></div>
+      </div>
+      <div class="ticker-card" onclick="pickStock('MSFT', '$415.30', 'Microsoft Corp.', this)">
+        <div class="tc-sym">MSFT</div>
+        <div class="tc-name">Microsoft Corp.</div>
+        <div class="tc-price">$415.30</div>
+        <div class="tc-chg up-text">▲ +0.8% today</div>
+        <div class="tc-bar-bg"><div class="tc-bar-fill" style="width:74%;background:#4d9fff;"></div></div>
+      </div>
+      <div class="ticker-card" onclick="pickStock('GOOGL', '$175.80', 'Alphabet Inc.', this)">
+        <div class="tc-sym">GOOGL</div>
+        <div class="tc-name">Alphabet Inc.</div>
+        <div class="tc-price">$175.80</div>
+        <div class="tc-chg down-text">▼ -0.4% today</div>
+        <div class="tc-bar-bg"><div class="tc-bar-fill" style="width:45%;background:#f43f5e;"></div></div>
+      </div>
+      <div class="ticker-card" onclick="pickStock('NVDA', '$875.20', 'NVIDIA Corp.', this)">
+        <div class="tc-sym">NVDA</div>
+        <div class="tc-name">NVIDIA Corp.</div>
+        <div class="tc-price">$875.20</div>
+        <div class="tc-chg up-text">▲ +3.4% today</div>
+        <div class="tc-bar-bg"><div class="tc-bar-fill" style="width:92%;background:#3ddba8;"></div></div>
+      </div>
+      <div class="ticker-card" onclick="pickStock('AMZN', '$186.90', 'Amazon.com', this)">
+        <div class="tc-sym">AMZN</div>
+        <div class="tc-name">Amazon.com</div>
+        <div class="tc-price">$186.90</div>
+        <div class="tc-chg up-text">▲ +1.6% today</div>
+        <div class="tc-bar-bg"><div class="tc-bar-fill" style="width:62%;background:#fb923c;"></div></div>
+      </div>
+    </div>
+
+    <div class="market-grid">
+      <!-- Chart -->
+      <div class="chart-box">
+        <div class="chart-top">
+          <div>
+            <div class="chart-price" id="chartPrice">$192.40</div>
+            <div class="chart-name" id="chartName">AAPL · Apple Inc.</div>
+          </div>
+          <div class="range-btns">
+            <button class="range-btn active" onclick="pickRange(this)">1D</button>
+            <button class="range-btn" onclick="pickRange(this)">1W</button>
+            <button class="range-btn" onclick="pickRange(this)">1M</button>
+            <button class="range-btn" onclick="pickRange(this)">3M</button>
+            <button class="range-btn" onclick="pickRange(this)">1Y</button>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <svg id="mainChart" viewBox="0 0 600 220" preserveAspectRatio="none" width="100%" height="100%">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3ddba8" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#3ddba8" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- grid lines -->
+            <line x1="0" y1="55"  x2="600" y2="55"  stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="110" x2="600" y2="110" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="165" x2="600" y2="165" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <!-- area -->
+            <path id="chartArea" d="M0,160 C60,150 120,140 180,120 C240,100 300,105 360,80 C420,55 480,45 540,30 L600,18 L600,220 L0,220 Z" fill="url(#chartGrad)"/>
+            <!-- line -->
+            <path id="chartLine" d="M0,160 C60,150 120,140 180,120 C240,100 300,105 360,80 C420,55 480,45 540,30 L600,18" fill="none" stroke="#3ddba8" stroke-width="2.5"/>
+            <!-- labels -->
+            <text x="6" y="22"  fill="rgba(255,255,255,0.3)" font-size="9" font-family="monospace">$195</text>
+            <text x="6" y="115" fill="rgba(255,255,255,0.3)" font-size="9" font-family="monospace">$190</text>
+            <text x="6" y="170" fill="rgba(255,255,255,0.3)" font-size="9" font-family="monospace">$185</text>
+            <text x="20"  y="218" fill="rgba(255,255,255,0.25)" font-size="8" font-family="monospace">09:30</text>
+            <text x="170" y="218" fill="rgba(255,255,255,0.25)" font-size="8" font-family="monospace">12:00</text>
+            <text x="340" y="218" fill="rgba(255,255,255,0.25)" font-size="8" font-family="monospace">14:00</text>
+            <text x="540" y="218" fill="rgba(255,255,255,0.25)" font-size="8" font-family="monospace">15:30</text>
+          </svg>
+        </div>
+
+        <div class="key-stats">
+          <div><div class="ks-label">Open</div><div class="ks-val" id="ksOpen">$189.30</div></div>
+          <div><div class="ks-label">High</div><div class="ks-val" style="color:#3ddba8;" id="ksHigh">$193.80</div></div>
+          <div><div class="ks-label">Low</div><div class="ks-val" style="color:#f43f5e;" id="ksLow">$188.90</div></div>
+          <div><div class="ks-label">Volume</div><div class="ks-val" id="ksVol">58.2M</div></div>
+          <div><div class="ks-label">52W H/L</div><div class="ks-val" id="ks52w">$199/$124</div></div>
+        </div>
+      </div>
+
+      <!-- Movers -->
+      <div class="movers-box">
+        <div class="movers-title">Market Movers</div>
+        <div class="mover-tabs">
+          <button class="mv-tab-btn active" onclick="switchMovers(this, 'gainers')">Top Gainers</button>
+          <button class="mv-tab-btn" onclick="switchMovers(this, 'losers')">Top Losers</button>
+        </div>
+        <div id="moversContent">
+          <div class="mover-row"><div class="mv-left"><div class="mv-icon" style="background:rgba(61,219,168,0.1);">🔬</div><div><div class="mv-sym">NVDA</div><div class="mv-name-small">NVIDIA</div></div></div><div class="mv-right"><div class="mv-price">$875.20</div><div class="mv-chg-val up-text">▲ +3.4%</div></div></div>
+          <div class="mover-row"><div class="mv-left"><div class="mv-icon" style="background:rgba(61,219,168,0.1);">📱</div><div><div class="mv-sym">META</div><div class="mv-name-small">Meta Platforms</div></div></div><div class="mv-right"><div class="mv-price">$508.40</div><div class="mv-chg-val up-text">▲ +2.1%</div></div></div>
+          <div class="mover-row"><div class="mv-left"><div class="mv-icon" style="background:rgba(61,219,168,0.1);">🍎</div><div><div class="mv-sym">AAPL</div><div class="mv-name-small">Apple</div></div></div><div class="mv-right"><div class="mv-price">$192.40</div><div class="mv-chg-val up-text">▲ +1.2%</div></div></div>
+          <div class="mover-row"><div class="mv-left"><div class="mv-icon" style="background:rgba(61,219,168,0.1);">🛒</div><div><div class="mv-sym">AMZN</div><div class="mv-name-small">Amazon</div></div></div><div class="mv-right"><div class="mv-price">$186.90</div><div class="mv-chg-val up-text">▲ +1.6%</div></div></div>
+          <div class="mover-row"><div class="mv-left"><div class="mv-icon" style="background:rgba(61,219,168,0.1);">🏦</div><div><div class="mv-sym">HDFCBANK</div><div class="mv-name-small">HDFC Bank</div></div></div><div class="mv-right"><div class="mv-price">₹1,680</div><div class="mv-chg-val up-text">▲ +0.9%</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end stocks tab -->
+
+
+<!-- ===========================
+     CALCULATORS TAB
+=========================== -->
+<div id="tab-calculators" class="tab-page">
+  <div class="calc-page">
+    <div class="badge" style="margin-bottom:14px;"><span class="blink"></span>6 Calculators</div>
+    <h2 style="font-size:28px;font-weight:700;margin-bottom:6px;">Financial <em style="font-style:normal;color:#3ddba8;">Calculators</em></h2>
+    <p style="color:#8899aa;font-size:13px;margin-bottom:26px;">EMI, SIP, Lump Sum, and FD calculators all in one place.</p>
+
+    <!-- Tabs -->
+    <div class="calc-switch">
+      <button class="calc-btn active" onclick="switchCalc(this,'hl')">🏠 Home Loan EMI</button>
+      <button class="calc-btn" onclick="switchCalc(this,'car')">🚗 Car Loan EMI</button>
+      <button class="calc-btn" onclick="switchCalc(this,'bike')">🏍 Bike Loan EMI</button>
+      <button class="calc-btn" onclick="switchCalc(this,'sip')">📈 SIP Calculator</button>
+      <button class="calc-btn" onclick="switchCalc(this,'ls')">💰 Lump Sum</button>
+      <button class="calc-btn" onclick="switchCalc(this,'fd')">🏦 FD Calculator</button>
+    </div>
+
+    <!-- Home Loan -->
+    <div id="cp-hl" class="calc-panel active">
+      <div class="calc-form-box">
+        <div class="calc-form-title">🏠 Home Loan EMI</div>
+        <div class="form-field"><label>Loan Amount (₹)</label><input type="number" id="hl-amt" value="5000000"/></div>
+        <div class="form-field">
+          <label>Interest Rate — <span id="hl-r-lbl" style="color:#3ddba8;">8.5%</span></label>
+          <input type="range" id="hl-r" min="5" max="20" step="0.1" value="8.5" oninput="document.getElementById('hl-r-lbl').textContent=this.value+'%'"/>
+          <div class="range-hints"><span>5%</span><span>20%</span></div>
+        </div>
+        <div class="form-field">
+          <label>Tenure — <span id="hl-t-lbl" style="color:#3ddba8;">20 Years</span></label>
+          <input type="range" id="hl-t" min="1" max="30" step="1" value="20" oninput="document.getElementById('hl-t-lbl').textContent=this.value+' Years'"/>
+          <div class="range-hints"><span>1 Yr</span><span>30 Yrs</span></div>
+        </div>
+        <button class="btn-calculate" onclick="doHomeLoan()">Calculate EMI</button>
+      </div>
+      <div class="calc-result-box">
+        <div class="result-label">Monthly EMI</div>
+        <div class="result-main" id="hl-emi">₹43,391</div>
+        <div class="result-desc" id="hl-desc">For ₹50L at 8.5% for 20 years</div>
+        <div>
+          <div class="result-row"><span class="r-name">Principal</span><span class="r-num" id="hl-rp">₹50,00,000</span></div>
+          <div class="result-row"><span class="r-name">Total Interest</span><span class="r-num" style="color:#f43f5e;" id="hl-ri">₹54,13,840</span></div>
+          <div class="result-row"><span class="r-name">Total Payable</span><span class="r-num" id="hl-rt">₹1,04,13,840</span></div>
+          <div class="result-row"><span class="r-name">Processing Fee (~1%)</span><span class="r-num" id="hl-rf">₹50,000</span></div>
+        </div>
+        <div class="result-bar">
+          <div class="rb-seg" id="hl-bp" style="background:#3ddba8;width:48%;"></div>
+          <div class="rb-seg" id="hl-bi" style="background:#f43f5e;width:52%;"></div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:8px;font-size:11px;color:#8899aa;">
+          <span>🟢 Principal</span><span>🔴 Interest</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car Loan -->
+    <div id="cp-car" class="calc-panel">
+      <div class="calc-form-box">
+        <div class="calc-form-title">🚗 Car Loan EMI</div>
+        <div class="form-field"><label>Car Price (₹)</label><input type="number" id="car-amt" value="800000"/></div>
+        <div class="form-field"><label>Down Payment (₹)</label><input type="number" id="car-down" value="200000"/></div>
+        <div class="form-field">
+          <label>Interest Rate — <span id="car-r-lbl" style="color:#3ddba8;">9%</span></label>
+          <input type="range" id="car-r" min="6" max="18" step="0.1" value="9" oninput="document.getElementById('car-r-lbl').textContent=this.value+'%'"/>
+          <div class="range-hints"><span>6%</span><span>18%</span></div>
+        </div>
+        <div class="form-field">
+          <label>Tenure — <span id="car-t-lbl" style="color:#3ddba8;">5 Years</span></label>
+          <input type="range" id="car-t" min="1" max="7" step="1" value="5" oninput="document.getElementById('car-t-lbl').textContent=this.value+' Years'"/>
+          <div class="range-hints"><span>1 Yr</span><span>7 Yrs</span></div>
+        </div>
+        <button class="btn-calculate" onclick="doCarLoan()">Calculate EMI</button>
+      </div>
+      <div class="calc-result-box">
+        <div class="result-label">Monthly EMI</div>
+        <div class="result-main" id="car-emi">₹12,470</div>
+        <div class="result-desc" id="car-desc">For ₹6L at 9% for 5 years</div>
+        <div>
+          <div class="result-row"><span class="r-name">Loan Amount (after down payment)</span><span class="r-num" id="car-rp">₹6,00,000</span></div>
+          <div class="result-row"><span class="r-name">Total Interest</span><span class="r-num" style="color:#f43f5e;" id="car-ri">₹1,48,200</span></div>
+          <div class="result-row"><span class="r-name">Total Car Cost</span><span class="r-num" id="car-rt">₹9,48,200</span></div>
+        </div>
+        <div class="result-bar">
+          <div class="rb-seg" id="car-bp" style="background:#4d9fff;width:80%;"></div>
+          <div class="rb-seg" id="car-bi" style="background:#f43f5e;width:20%;"></div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:8px;font-size:11px;color:#8899aa;"><span>🔵 Principal</span><span>🔴 Interest</span></div>
+      </div>
+    </div>
+
+    <!-- Bike Loan -->
+    <div id="cp-bike" class="calc-panel">
+      <div class="calc-form-box">
+        <div class="calc-form-title">🏍 Bike Loan EMI</div>
+        <div class="form-field"><label>Bike Price (₹)</label><input type="number" id="bike-amt" value="150000"/></div>
+        <div class="form-field"><label>Down Payment (₹)</label><input type="number" id="bike-down" value="30000"/></div>
+        <div class="form-field">
+          <label>Interest Rate — <span id="bike-r-lbl" style="color:#3ddba8;">10%</span></label>
+          <input type="range" id="bike-r" min="7" max="20" step="0.1" value="10" oninput="document.getElementById('bike-r-lbl').textContent=this.value+'%'"/>
+          <div class="range-hints"><span>7%</span><span>20%</span></div>
+        </div>
+        <div class="form-field">
+          <label>Tenure — <span id="bike-t-lbl" style="color:#3ddba8;">3 Years</span></label>
+          <input type="range" id="bike-t" min="1" max="5" step="1" value="3" oninput="document.getElementById('bike-t-lbl').textContent=this.value+' Years'"/>
+          <div class="range-hints"><span>1 Yr</span><span>5 Yrs</span></div>
+        </div>
+        <button class="btn-calculate" onclick="doBikeLoan()">Calculate EMI</button>
+      </div>
+      <div class="calc-result-box">
+        <div class="result-label">Monthly EMI</div>
+        <div class="result-main" id="bike-emi">₹3,869</div>
+        <div class="result-desc" id="bike-desc">For ₹1.2L at 10% for 3 years</div>
+        <div>
+          <div class="result-row"><span class="r-name">Loan Amount</span><span class="r-num" id="bike-rp">₹1,20,000</span></div>
+          <div class="result-row"><span class="r-name">Total Interest</span><span class="r-num" style="color:#f43f5e;" id="bike-ri">₹19,284</span></div>
+          <div class="result-row"><span class="r-name">Total Payable</span><span class="r-num" id="bike-rt">₹1,39,284</span></div>
+        </div>
+        <div class="result-bar">
+          <div class="rb-seg" id="bike-bp" style="background:#fb923c;width:86%;"></div>
+          <div class="rb-seg" id="bike-bi" style="background:#f43f5e;width:14%;"></div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:8px;font-size:11px;color:#8899aa;"><span>🟠 Principal</span><span>🔴 Interest</span></div>
+      </div>
+    </div>
+
+    <!-- SIP -->
+    <div id="cp-sip" class="calc-panel">
+      <div class="calc-form-box">
+        <div class="calc-form-title">📈 SIP Calculator</div>
+        <div class="form-field">
+          <label>Monthly Investment — <span id="sip-a-lbl" style="color:#3ddba8;">₹5,000</span></label>
+          <input type="range" id="sip-a" min="500" max="100000" step="500" value="5000" oninput="document.getElementById('sip-a-lbl').textContent='₹'+Number(this.value).toLocaleString('en-IN')"/>
+          <div class="range-hints"><span>₹500</span><span>₹1L</span></div>
+        </div>
+        <div class="form-field">
+          <label>Expected Return (%) — <span id="sip-r-lbl" style="color:#3ddba8;">12%</span></label>
+          <input type="range" id="sip-r" min="4" max="30" step="0.5" value="12" oninput="document.getElementById('sip-r-lbl').textContent=this.value+'%'"/>
+          <div class="range-hints"><span>4%</span><span>30%</span></div>
+        </div>
+        <div class="form-field">
+          <label>Period — <span id="sip-p-lbl" style="color:#3ddba8;">10 Years</span></label>
+          <input type="range" id="sip-p" min="1" max="40" step="1" value="10" oninput="document.getElementById('sip-p-lbl').textContent=this.value+' Years'"/>
+          <div class="range-hints"><span>1 Yr</span><span>40 Yrs</span></div>
+        </div>
+        <button class="btn-calculate" onclick="doSIP()">Calculate Returns</button>
+      </div>
+      <div class="calc-result-box">
+        <div class="result-label">Estimated Corpus</div>
+        <div class="result-main" id="sip-final">₹11,61,695</div>
+        <div class="result-desc" id="sip-desc">Invested ₹6L · Gains ₹5.6L in 10 years</div>
+        <div class="sip-visual">
+          <div class="sip-row"><span class="sip-row-label">Invested</span><div class="sip-bar-bg"><div class="sip-bar-fill" id="sip-bar-a" style="width:52%;background:#4d9fff;"></div></div><span class="sip-row-val" id="sip-val-a">₹6,00,000</span></div>
+          <div class="sip-row"><span class="sip-row-label">Est. Returns</span><div class="sip-bar-bg"><div class="sip-bar-fill" id="sip-bar-b" style="width:48%;background:#3ddba8;"></div></div><span class="sip-row-val" id="sip-val-b">₹5,61,695</span></div>
+          <div class="sip-row"><span class="sip-row-label">Total</span><div class="sip-bar-bg"><div class="sip-bar-fill" style="width:100%;background:linear-gradient(to right,#1a2456,#3ddba8);"></div></div><span class="sip-row-val" id="sip-val-c">₹11,61,695</span></div>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-label">Wealth Gained</div>
+          <div class="hl-val" id="sip-gain">+93.6%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lump Sum -->
+    <div id="cp-ls" class="calc-panel">
+      <div class="calc-form-box">
+        <div class="calc-form-title">💰 Lump Sum Calculator</div>
+        <div class="form-field"><label>Investment Amount (₹)</label><input type="number" id="ls-amt" value="100000"/></div>
+        <div class="form-field">
+          <label>Expected Return (%) — <span id="ls-r-lbl" style="color:#3ddba8;">12%</span></label>
+          <input type="range" id="ls-r" min="4" max="30" step="0.5" value="12" oninput="document.getElementById('ls-r-lbl').textContent=this.value+'%'"/>
+          <div class="range-hints"><span>4%</span><span>30%</span></div>
+        </div>
+        <div class="form-field">
+          <label>Period — <span id="ls-p-lbl" style="color:#3ddba8;">10 Years</span></label>
+          <input type="range" id="ls-p" min="1" max="40" step="1" value="10" oninput="document.getElementById('ls-p-lbl').textContent=this.value+' Years'"/>
+          <div class="range-hints"><span>1 Yr</span><span>40 Yrs</span></div>
+        </div>
+        <button class="btn-calculate" onclick="doLumpsum()">Calculate</button>
+      </div>
+      <div class="calc-result-box">
+        <div class="result-label">Future Value</div>
+        <div class="result-main" id="ls-final">₹3,10,585</div>
+        <div class="result-desc">₹1L grows to ₹3.1L in 10 years at 12%</div>
+        <div>
+          <div class="result-row"><span class="r-name">Amount Invested</span><span class="r-num" id="ls-ri">₹1,00,000</span></div>
+          <div class="result-row"><span class="r-name">Wealth Gained</span><span class="r-num" style="color:#3ddba8;" id="ls-rg">₹2,10,585</span></div>
+          <div class="result-row"><span class="r-name">Absolute Return</span><span class="r-num" style="color:#3ddba8;" id="ls-rr">+210.6%</span></div>
+          <div class="result-row"><span class="r-name">CAGR</span><span class="r-num" id="ls-rc">12.0%</span></div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:#8899aa;line-height:1.6;">
+          💡 <strong>Rule of 72:</strong> Money doubles every <span style="color:#3ddba8;" id="ls-double">6 years</span> at this rate.
+        </div>
+      </div>
+    </div>
+
+    <!-- FD -->
+    <div id="cp-fd" class="calc-panel">
+      <div class="calc-form-box">
+        <div class="calc-form-title">🏦 Fixed Deposit</div>
+        <div class="form-field"><label>Principal (₹)</label><input type="number" id="fd-amt" value="100000"/></div>
+        <div class="form-field">
+          <label>Interest Rate — <span id="fd-r-lbl" style="color:#3ddba8;">7%</span></label>
+          <input type="range" id="fd-r" min="3" max="10" step="0.1" value="7" oninput="document.getElementById('fd-r-lbl').textContent=this.value+'%'"/>
+          <div class="range-hints"><span>3%</span><span>10%</span></div>
+        </div>
+        <div class="form-field">
+          <label>Tenure — <span id="fd-t-lbl" style="color:#3ddba8;">3 Years</span></label>
+          <input type="range" id="fd-t" min="1" max="10" step="1" value="3" oninput="document.getElementById('fd-t-lbl').textContent=this.value+' Years'"/>
+          <div class="range-hints"><span>1 Yr</span><span>10 Yrs</span></div>
+        </div>
+        <div class="form-field">
+          <label>Compounding</label>
+          <select id="fd-freq">
+            <option value="1">Annually</option>
+            <option value="2">Half-Yearly</option>
+            <option value="4" selected>Quarterly</option>
+            <option value="12">Monthly</option>
+          </select>
+        </div>
+        <button class="btn-calculate" onclick="doFD()">Calculate Maturity</button>
+      </div>
+      <div class="calc-result-box">
+        <div class="result-label">Maturity Amount</div>
+        <div class="result-main" id="fd-final">₹1,23,144</div>
+        <div class="result-desc">For ₹1L at 7% quarterly for 3 years</div>
+        <div>
+          <div class="result-row"><span class="r-name">Principal</span><span class="r-num" id="fd-rp">₹1,00,000</span></div>
+          <div class="result-row"><span class="r-name">Interest Earned</span><span class="r-num" style="color:#3ddba8;" id="fd-ri">₹23,144</span></div>
+          <div class="result-row"><span class="r-name">Effective Yield</span><span class="r-num" id="fd-ry">7.19%</span></div>
+        </div>
+        <div class="highlight-box" style="background:rgba(77,159,255,0.06);border-color:rgba(77,159,255,0.15);">
+          <div class="hl-label">After TDS (10%)</div>
+          <div class="hl-val" style="color:#4d9fff;" id="fd-tds">₹1,20,830</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- end calculators tab -->
+
+
+<!-- ===========================
+     INSIGHTS TAB
+=========================== -->
+<div id="tab-insights" class="tab-page">
+  <div class="insights-page">
+    <div class="badge" style="margin-bottom:14px;"><span class="blink"></span>Personalised Insights</div>
+    <h2 style="font-size:28px;font-weight:700;margin-bottom:6px;">Financial <em style="font-style:normal;color:#3ddba8;">Insights</em></h2>
+    <p style="color:#8899aa;font-size:13px;margin-bottom:26px;">Key metrics and recommendations based on your portfolio.</p>
+
+    <div class="insights-grid">
+      <div class="insight-card"><div class="ic-icon">🎯</div><div class="ic-title">Portfolio Health Score</div><div class="ic-text">Your diversification across equity, debt and crypto is well-balanced. Consider adding more international exposure.</div><div class="ic-val">82 / 100</div></div>
+      <div class="insight-card"><div class="ic-icon">📊</div><div class="ic-title">Asset Allocation</div><div class="ic-text">55% Equity, 28% Debt, 17% Crypto. Your allocation suits a moderate-aggressive risk profile.</div><div class="ic-val" style="color:#4d9fff;">Balanced</div></div>
+      <div class="insight-card"><div class="ic-icon">💡</div><div class="ic-title">XIRR Return</div><div class="ic-text">Your portfolio's XIRR outperforms the Nifty 50 benchmark return of 14.2% this year.</div><div class="ic-val">18.4% XIRR</div></div>
+      <div class="insight-card"><div class="ic-icon">⚠️</div><div class="ic-title">Risk Alert</div><div class="ic-text">Tesla (-11.1%) is dragging portfolio performance. Consider averaging down or booking partial losses.</div><div class="ic-val" style="color:#f43f5e;">TSLA -11.1%</div></div>
+      <div class="insight-card"><div class="ic-icon">🔥</div><div class="ic-title">Top Performer</div><div class="ic-text">NVDA has returned +148.3% YTD. Consider booking partial profits to lock in gains.</div><div class="ic-val" style="color:#fbbf24;">NVDA +148.3%</div></div>
+      <div class="insight-card"><div class="ic-icon">🧮</div><div class="ic-title">Emergency Fund</div><div class="ic-text">Maintain 6 months of expenses in a liquid fund. Current SBI Debt Fund covers ~4.2 months.</div><div class="ic-val" style="color:#fb923c;">4.2 months</div></div>
+      <div class="insight-card"><div class="ic-icon">📅</div><div class="ic-title">SIP Recommendation</div><div class="ic-text">Increase SIP by 10% annually. ₹5,000/month at 12% for 20 years = ₹49.9L corpus.</div><div class="ic-val">₹49.9L in 20yr</div></div>
+      <div class="insight-card"><div class="ic-icon">🏦</div><div class="ic-title">Tax Optimisation</div><div class="ic-text">Book LTCG up to ₹1L tax-free. Consider ELSS funds for 80C deduction up to ₹1.5L.</div><div class="ic-val" style="color:#818cf8;">Save ₹46,800</div></div>
+      <div class="insight-card"><div class="ic-icon">🌍</div><div class="ic-title">Global Exposure</div><div class="ic-text">US stocks (AAPL, TSLA) provide 32% global diversification. Consider adding EM ETFs.</div><div class="ic-val">32% Global</div></div>
+    </div>
+
+    <!-- Finance 101 -->
+    <div style="margin-top:40px;">
+      <div class="section-header"><div class="section-title">Finance 101 — Know the Basics</div></div>
+      <div class="basics-grid">
+        <div class="basic-card"><div class="basic-icon">📈</div><div class="basic-title">What is a Stock?</div><div class="basic-text">A stock represents ownership in a company. When you buy a share, you become a part-owner. If the company grows, your share value goes up.</div></div>
+        <div class="basic-card"><div class="basic-icon">💹</div><div class="basic-title">What is a Mutual Fund?</div><div class="basic-text">Money pooled from many investors managed by a professional. It invests in stocks, bonds etc. based on the fund's objective.</div></div>
+        <div class="basic-card"><div class="basic-icon">📊</div><div class="basic-title">What is SIP?</div><div class="basic-text">Systematic Investment Plan — investing a fixed amount every month. Benefits from rupee cost averaging and the power of compounding.</div></div>
+        <div class="basic-card"><div class="basic-icon">₿</div><div class="basic-title">What is Crypto?</div><div class="basic-text">Digital currency secured by cryptography. Bitcoin and Ethereum are the most popular. High risk, high reward — only invest what you can afford to lose.</div></div>
+        <div class="basic-card"><div class="basic-icon">⚖️</div><div class="basic-title">Risk vs Reward</div><div class="basic-text">Higher returns always come with higher risk. Balance your portfolio between high-risk equity, moderate mutual funds, and low-risk debt.</div></div>
+        <div class="basic-card"><div class="basic-icon">🔄</div><div class="basic-title">Compound Interest</div><div class="basic-text">Earning returns on your returns. ₹10,000 at 12% for 20 years grows to ₹96,463. Start early, stay invested.</div></div>
+      </div>
+    </div>
+
+    <!-- Teen Finance Apps -->
+    <div style="margin-top:50px;">
+
+      <!-- Safe & Recommended -->
+      <div class="section-header" style="margin-bottom:6px;">
+        <div class="section-title">📱 Apps Teens Can Use <span class="count" style="background:rgba(61,219,168,0.12);color:#3ddba8;">SEBI / RBI Regulated</span></div>
+      </div>
+      <p style="font-size:12px;color:#8899aa;margin-bottom:18px;">These apps are legal, regulated, and safe for teens (with parental guidance). Available on Play Store &amp; App Store in India.</p>
+
+      <div class="app-grid">
+
+        <div class="app-card app-safe">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(61,219,168,0.12);">🪙</div>
+            <div class="app-safe-badge">✅ Safe</div>
+          </div>
+          <div class="app-name">Groww</div>
+          <div class="app-category">Stocks · MF · FD</div>
+          <div class="app-desc">Best beginner app for teens. Simple UI, zero commission mutual funds, and great educational content. Needs parent's PAN for minor accounts.</div>
+          <div class="app-footer-row">
+            <span class="app-reg-tag">SEBI Registered</span>
+            <span class="app-store-tag">▶ Play Store</span>
+          </div>
+        </div>
+
+        <div class="app-card app-safe">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(77,159,255,0.12);">📊</div>
+            <div class="app-safe-badge">✅ Safe</div>
+          </div>
+          <div class="app-name">Zerodha Kite</div>
+          <div class="app-category">Stocks · F&amp;O · IPO</div>
+          <div class="app-desc">India's #1 stock broker. Clean interface, Varsity learning module is excellent for teens to learn markets. Minor demat account available with guardian.</div>
+          <div class="app-footer-row">
+            <span class="app-reg-tag">SEBI Registered</span>
+            <span class="app-store-tag">▶ Play Store</span>
+          </div>
+        </div>
+
+        <div class="app-card app-safe">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(129,140,248,0.12);">💜</div>
+            <div class="app-safe-badge">✅ Safe</div>
+          </div>
+          <div class="app-name">Coin by Zerodha</div>
+          <div class="app-category">Mutual Funds</div>
+          <div class="app-desc">Direct mutual fund investing with zero commission. Great for teens starting a SIP with as little as ₹100/month. Backed by Zerodha.</div>
+          <div class="app-footer-row">
+            <span class="app-reg-tag">SEBI / AMFI</span>
+            <span class="app-store-tag">▶ Play Store</span>
+          </div>
+        </div>
+
+        <div class="app-card app-safe">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(251,191,36,0.12);">🏦</div>
+            <div class="app-safe-badge">✅ Safe</div>
+          </div>
+          <div class="app-name">Paytm Money</div>
+          <div class="app-category">MF · NPS · Stocks</div>
+          <div class="app-desc">Easy to use app for mutual funds and NPS. Good for teens learning about long-term saving. Regulated by SEBI and backed by Paytm.</div>
+          <div class="app-footer-row">
+            <span class="app-reg-tag">SEBI Registered</span>
+            <span class="app-store-tag">▶ Play Store</span>
+          </div>
+        </div>
+
+        <div class="app-card app-safe">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(61,219,168,0.12);">🌱</div>
+            <div class="app-safe-badge">✅ Safe</div>
+          </div>
+          <div class="app-name">ET Money</div>
+          <div class="app-category">MF · Insurance · Loans</div>
+          <div class="app-desc">All-in-one personal finance app. Smart portfolio tracker, SIP reminders, and financial health score. Great learning tool for teenagers.</div>
+          <div class="app-footer-row">
+            <span class="app-reg-tag">SEBI / IRDAI</span>
+            <span class="app-store-tag">▶ Play Store</span>
+          </div>
+        </div>
+
+        <div class="app-card app-safe">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(77,159,255,0.12);">🔵</div>
+            <div class="app-safe-badge">✅ Safe</div>
+          </div>
+          <div class="app-name">HDFC Sky</div>
+          <div class="app-category">Stocks · MF · IPO</div>
+          <div class="app-desc">HDFC Bank's trading platform. Trusted by millions. Teens can open a minor demat account with a parent or guardian as the primary holder.</div>
+          <div class="app-footer-row">
+            <span class="app-reg-tag">SEBI · RBI</span>
+            <span class="app-store-tag">▶ Play Store</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banned / Illegal -->
+      <div class="section-header" style="margin-top:44px;margin-bottom:6px;">
+        <div class="section-title">🚫 Banned &amp; Illegal Apps <span class="count" style="background:rgba(244,63,94,0.12);color:#f43f5e;">Avoid These</span></div>
+      </div>
+      <p style="font-size:12px;color:#8899aa;margin-bottom:18px;">These apps are either banned by SEBI/RBI, operate without a licence, or are known scams. Using them can result in financial loss or legal trouble.</p>
+
+      <div class="app-grid">
+
+        <div class="app-card app-banned">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(244,63,94,0.1);">⚠️</div>
+            <div class="app-banned-badge">🚫 Banned</div>
+          </div>
+          <div class="app-name">Binomo</div>
+          <div class="app-category">Binary Options Trading</div>
+          <div class="app-desc">Banned by SEBI in India. Operates as an illegal binary options platform. Teens are heavily targeted via YouTube/Instagram ads. Guaranteed way to lose money.</div>
+          <div class="app-footer-row">
+            <span class="app-ban-tag">SEBI Ban Order</span>
+            <span class="app-risk-tag">🔴 High Risk</span>
+          </div>
+        </div>
+
+        <div class="app-card app-banned">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(244,63,94,0.1);">⚠️</div>
+            <div class="app-banned-badge">🚫 Banned</div>
+          </div>
+          <div class="app-name">Olymp Trade</div>
+          <div class="app-category">Binary Options / Forex</div>
+          <div class="app-desc">Not registered with SEBI or RBI. Heavily advertised to teens on social media with fake profit screenshots. Withdrawals are routinely blocked by users.</div>
+          <div class="app-footer-row">
+            <span class="app-ban-tag">Not SEBI Approved</span>
+            <span class="app-risk-tag">🔴 High Risk</span>
+          </div>
+        </div>
+
+        <div class="app-card app-banned">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(244,63,94,0.1);">⚠️</div>
+            <div class="app-banned-badge">🚫 Scam</div>
+          </div>
+          <div class="app-name">IQ Option</div>
+          <div class="app-category">Binary Options</div>
+          <div class="app-desc">Banned by SEBI. Removed from Indian app stores. Targets teens with promises of high returns. Multiple consumer complaints registered with RBI.</div>
+          <div class="app-footer-row">
+            <span class="app-ban-tag">SEBI Ban Order</span>
+            <span class="app-risk-tag">🔴 High Risk</span>
+          </div>
+        </div>
+
+        <div class="app-card app-banned">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(244,63,94,0.1);">⚠️</div>
+            <div class="app-banned-badge">🚫 Illegal</div>
+          </div>
+          <div class="app-name">HPZ Token / Cloud Mining Apps</div>
+          <div class="app-category">Fake Crypto Mining</div>
+          <div class="app-desc">Fake crypto mining apps that promise daily earnings. These are Ponzi schemes. RBI has warned specifically against such apps targeting school and college students.</div>
+          <div class="app-footer-row">
+            <span class="app-ban-tag">RBI Warning</span>
+            <span class="app-risk-tag">🔴 Ponzi Scheme</span>
+          </div>
+        </div>
+
+        <div class="app-card app-banned">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(244,63,94,0.1);">⚠️</div>
+            <div class="app-banned-badge">🚫 Illegal</div>
+          </div>
+          <div class="app-name">Unregulated Loan Apps</div>
+          <div class="app-category">Instant Loans (No KYC)</div>
+          <div class="app-desc">Apps like RupeeGo, CashBean clones, and Chinese instant loan apps were banned by RBI for charging 300-500% APR and harassing borrowers. Never use these.</div>
+          <div class="app-footer-row">
+            <span class="app-ban-tag">RBI Ban</span>
+            <span class="app-risk-tag">🔴 Predatory</span>
+          </div>
+        </div>
+
+        <div class="app-card app-banned">
+          <div class="app-card-top">
+            <div class="app-icon-wrap" style="background:rgba(244,63,94,0.1);">⚠️</div>
+            <div class="app-banned-badge">🚫 Scam</div>
+          </div>
+          <div class="app-name">Fake "Trading Signal" Apps</div>
+          <div class="app-category">Telegram / WhatsApp Based</div>
+          <div class="app-desc">Apps and channels claiming to give "100% guaranteed stock tips" for a fee. SEBI has issued repeated warnings. These are investment fraud schemes targeting teens.</div>
+          <div class="app-footer-row">
+            <span class="app-ban-tag">SEBI Warning</span>
+            <span class="app-risk-tag">🔴 Fraud</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Warning Banner -->
+      <div class="teen-warning-box">
+        <div class="tw-icon">🛡️</div>
+        <div>
+          <div class="tw-title">Stay Safe — Golden Rules for Teens</div>
+          <div class="tw-text">
+            Never invest in apps not listed on SEBI's registered intermediary list &nbsp;·&nbsp;
+            Always verify on <strong style="color:#3ddba8;">sebi.gov.in</strong> before investing &nbsp;·&nbsp;
+            No legitimate app promises "guaranteed returns" &nbsp;·&nbsp;
+            If an app asks for OTP or Aadhaar without parent knowledge — stop immediately &nbsp;·&nbsp;
+            Report fraud to <strong style="color:#3ddba8;">cybercrime.gov.in</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- end insights tab -->
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="foot-name">Invest<span>IQ</span></div>
+    <div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8899aa;margin-top:3px;">Financial Dashboard</div>
+  </div>
+  <p>© 2025 InvestIQ · Built with HTML &amp; CSS · For Educational Purposes</p>
+  <p>Not financial advice. Consult a SEBI-registered advisor.</p>
+</div>
+
+<script src="calculator.js"></script>
+</body>
+</html>
